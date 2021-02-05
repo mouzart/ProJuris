@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-12">
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Ações</td>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr *ngFor="let pokemon of pokemonList">
+                <td>
+                    {{ pokemon.name }}
+                </td>
+                <td>
+                    <a class="btn btn-primary" href="{{pokemon.url}}"> Favorito</a>
+                    <a class="btn btn-primary" href="{{pokemon.url}}"> Detalhes</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example pt-1">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
