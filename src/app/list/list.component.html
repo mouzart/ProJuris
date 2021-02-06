@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-12">
+    <div class="col-4">
         <table class="table table-dark table-striped">
             <thead>
             <tr>
@@ -9,34 +9,73 @@
 
             </thead>
             <tbody>
-            <tr *ngFor="let pokemon of pokemonList">
+            <tr *ngFor="let pokemon of pokemonList ">
                 <td>
                     {{ pokemon.name }}
                 </td>
                 <td>
-                    <a class="btn btn-primary" href="{{pokemon.url}}"> Favorito</a>
-                    <a class="btn btn-primary" href="{{pokemon.url}}"> Detalhes</a>
+                    <div class="btn-group float-end">
+                        <a href="#" class="btn {{checkIfPokemonFavorite(pokemon) ? 'btn-light' : 'btn-warning' }} btn-warning btn-sm" aria-current="page" (click)="savePokemon(pokemon)"> <i
+                                class="far fa-star text-warning"></i>
+                            Favorito</a>
+                        <a href="#" class="btn btn-secondary btn-sm" (click)="pokemonDetails(pokemon.url)">Detalhes</a>
+                    </div>
                 </td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2">
+                    <nav aria-label="Paginação">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous" (click)="getPokemons(previous)" *ngIf="previous">
+                                    <span aria-hidden="true">&laquo; </span> Anterior
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next" (click)="getPokemons(next)" *ngIf="next">
+                                    Proximo <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <span class="text-light small">{{count}} Pokemons cadastrados</span>
+                </td>
+            </tr>
+            </tfoot>
         </table>
-        <nav aria-label="Page navigation example pt-1">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    </div>
+    <div class="col-5">
+        <h3 class="text-light">Pokemon</h3>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{pokemon.name}}</h5>
+                <div class="card-text row">
+                    <div class="col-8">
+                        <div>Altura: {{ pokemon.height }}</div>
+                        <div>Experiência básica obtida ao derrotar: {{ pokemon.base_experience }}</div>
+                        <div>Peso: {{ pokemon.weight }}</div>
+                    </div>
+                    <div class="col-4">
+                        <img src="{{pokemon.sprites.front_default}}"/>
+                        <img src="{{pokemon.sprites.back_default}}"/>
+                        <img src="{{pokemon.sprites.front_shiny}}"/>
+                        <img src="{{pokemon.sprites.back_shiny}}"/>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <h3 class="text-light">Favoritos</h3>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let pokemon of pokemonFavoriteList">{{pokemon.name}}
+                <a href="#" class="btn btn-secondary btn-sm ml-1 float-end" (click)="pokemonDetails(pokemon.url)">Detalhes</a>
+            </li>
+        </ul>
+        <button type="button" class="btn btn-warning w-100 mt-2" (click)="cleanStoragePokemonFavorite()"> Limpar favoritos</button>
     </div>
 </div>
-

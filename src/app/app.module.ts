@@ -25,7 +25,7 @@ import {RouterModule} from '@angular/router';
                 path: 'details/:name',
                 component: DetailsComponent
             }
-        ])
+        ]),
     ],
     exports: [
         RouterModule
